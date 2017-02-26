@@ -31,3 +31,10 @@
 .option:hover {
     border-color: lightcoral;
 }
+
+#top-panel {
+    font-size: x-large;
+    top: 0;
+    left: 1%;
+    position: absolute;
+}

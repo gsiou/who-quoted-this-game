@@ -1,9 +1,17 @@
 window.state = {
     'score': 0,
+    'highscore': 0,
     'quote': null
 };
 
-$(function () {
+$(function () { /* Entry Point */
+    if(localStorage.highscore) {
+        window.state['highscore'] = localStorage.highscore;
+    }
+    else {
+        localStorage.highscore = 0;
+    }
+    updateScoreUI();
     hideOptions();
     loadQuote();
 });
@@ -72,11 +80,20 @@ function eraseScore() {
 
 function increaseScore() {
     window.state.score += 1;
+    if(window.state.score > window.state.highscore) {
+        setHighScore(window.state.score);
+    }
     updateScoreUI();
+}
+
+function setHighScore(newValue) {
+    window.state.highscore = newValue;
+    localStorage.highscore = newValue;
 }
 
 function updateScoreUI() {
     $("#score").text(window.state.score);
+    $("#highscore").text(window.state.highscore);
 }
 
 function hideOptions() {
