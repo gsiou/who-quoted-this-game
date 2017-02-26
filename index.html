@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/wikiquotes-api/wikiquote-api.js"></script>
+        <script src="quotes.js"></script>
+        <script src="app.js"></script>
+        <link rel="stylesheet" href="app.css">
+        <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet">
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div id="app">
+            <h1>Who quoted this?</h1>
+            <div id="quote-area">
+                <p>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                    <span id="quote"></span>
+                    <i class="fa fa-quote-right" aria-hidden="true"></i>
+                </p>
+            </div>
+            <div id="options">
+                <button class="option" id="option1">Option 1</button>
+                <span class="seperator"> or </span>
+                <button class="option" id="option2">Option 2</button>
+            </div>
+            <p>Score: <span id="score">0</span></p>
+        </div>
+    </body>
+</html>

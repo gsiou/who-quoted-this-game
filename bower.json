@@ -1,0 +1,22 @@
+{
+  "name": "quote-game",
+  "authors": [
+    "George Anastasiou <dr.george995@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "wikiquotes-api": "natetyler/wikiquotes-api",
+    "font-awesome": "^4.7.0"
+  }
+}
