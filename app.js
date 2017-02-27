@@ -25,7 +25,7 @@ function loadQuote() {
             window.state['quote'] = data;
             $("#quote").html(data.quote);
             $("#quote").find("a").contents().unwrap(); // Remove any links
-            if($("#quote").html().length === 0) {
+            if($("#quote").text().length === 0) {
                 loadQuote();
             }
             else {
