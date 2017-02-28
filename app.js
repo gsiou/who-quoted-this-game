@@ -9,9 +9,18 @@ window.maxHistory = 20;
 window.quotePool = [];
 window.poolMax = 3;
 
-
 $(function () { /* Entry Point */
     prefetch();
+    $(document).keydown(function(e) {
+        if(window.state.quote !== null) {
+            if(e.which == 37) {
+                $("#option1").click();
+            }
+            else if(e.which == 39) {
+                $("#option2").click();
+            }
+        }
+    });
     if(localStorage.highscore) {
         window.state['highscore'] = localStorage.highscore;
     }
