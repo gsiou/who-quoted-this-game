@@ -61,10 +61,17 @@ a {
     left:15%;
     width: 70%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.98);
     color: white;
     text-align: center;
     overflow: auto;
+}
+
+.modal-close {
+    color: white;
+    position: absolute;
+    right: 1%;
+    font-size: large;
 }
 
 .history-item {
