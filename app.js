@@ -6,8 +6,12 @@ window.state = {
 };
 
 window.maxHistory = 20;
+window.quotePool = [];
+window.poolMax = 3;
+
 
 $(function () { /* Entry Point */
+    prefetch();
     if(localStorage.highscore) {
         window.state['highscore'] = localStorage.highscore;
     }
@@ -19,24 +23,50 @@ $(function () { /* Entry Point */
     loadQuote();
 });
 
-function loadQuote() {
-    getQuote().then(function(data) {
-        if(data.quote.length > 250 || data.quote.length < 6) {
-            loadQuote();
-        }
+function prefetch() {
+    for(var i = 0; i < window.poolMax - window.quotePool.length; i++) {
+        fetch(function(data) {
+            window.quotePool.push(data);
+        });
+    }
+}
+
+function fetch(callback) {
+    getQuote().then(function (data) {
+        if (data.quote.length > 250 || data.quote.length < 6) {
+            fetch(callback);
+        } 
         else {
-            window.state['quote'] = data;
-            $("#quote").html(data.quote);
-            $("#quote").find("a").contents().unwrap(); // Remove any links
-            // Save to history
-            if(window.state.history.length > window.maxHistory) {
-                // Clear oldest
-                window.state.history.shift();
-            }
-            window.state.history.push(window.state.quote);
-            loadOptions(data.correct, data.wrong);
+            callback(data);
         }
     });
+}
+
+function loadQuote() {
+    if(window.quotePool.length === 0) {
+        getQuote().then(function(data) {
+            fetch(function(data) {
+                setActiveQuote(data);
+            })
+        });
+    }
+    else {
+        setActiveQuote(window.quotePool.pop());
+        prefetch();
+    }
+}
+
+function setActiveQuote(data) {
+    window.state['quote'] = data;
+    $("#quote").html(data.quote);
+    $("#quote").find("a").contents().unwrap(); // Remove any links
+    // Save to history
+    if(window.state.history.length > window.maxHistory) {
+        // Clear oldest
+        window.state.history.shift();
+    }
+    window.state.history.push(window.state.quote);
+    loadOptions(data.correct, data.wrong);
 }
 
 function loadOptions(correct, wrong) {
