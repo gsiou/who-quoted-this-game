@@ -1,8 +1,11 @@
 window.state = {
     'score': 0,
     'highscore': 0,
-    'quote': null
+    'quote': null,
+    'history': []
 };
+
+window.maxHistory = 20;
 
 $(function () { /* Entry Point */
     if(localStorage.highscore) {
@@ -29,6 +32,12 @@ function loadQuote() {
                 loadQuote();
             }
             else {
+                // Save to history
+                if(window.state.history.length > window.maxHistory) {
+                    // Clear oldest
+                    window.state.history.shift();
+                }
+                window.state.history.push(window.state.quote);
                 loadOptions(data.correct, data.wrong);
             }
         }
@@ -96,7 +105,39 @@ function updateScoreUI() {
     $("#highscore").text(window.state.highscore);
 }
 
+function showHistory() {
+    updateHistoryUI();
+    $("#history-modal").show();
+}
+
+function hideHistory() {
+    $("#history-modal").hide();
+}
+
+function updateHistoryUI() {
+    // Render all history items except the last one.
+    // The last is the current quote.
+    $("#history-list").html(""); // Clear previous
+    for(var i = 0; i < window.state.history.length - 1; i++) {
+        $("#history-list").append(renderHistoryItem(window.state.history[i]));
+    }
+    $("#history-list").find("a").contents().unwrap(); // Remove links 
+}
+
 function hideOptions() {
     $("#quote").text("Loading...");
     $("#options").hide();
+}
+
+function renderHistoryItem(data) {
+    return (
+        "<div class='history-item'>" +
+        "<div class='history-item-quote'>" + 
+        "<i class='fa fa-quote-left' aria-hidden='true'></i>&nbsp;" +
+        data.quote +
+        "&nbsp;<i class='fa fa-quote-right' aria-hidden='true'></i>" +  
+        "</div><div class='history-item-author'>" +
+        data.correct + 
+        "</div></div><br>"
+    );
 }
