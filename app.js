@@ -21,25 +21,20 @@ $(function () { /* Entry Point */
 
 function loadQuote() {
     getQuote().then(function(data) {
-        if(data.quote.length > 250 || data.quote.length === 0) {
+        if(data.quote.length > 250 || data.quote.length < 6) {
             loadQuote();
         }
         else {
             window.state['quote'] = data;
             $("#quote").html(data.quote);
             $("#quote").find("a").contents().unwrap(); // Remove any links
-            if($("#quote").text().length === 0) {
-                loadQuote();
+            // Save to history
+            if(window.state.history.length > window.maxHistory) {
+                // Clear oldest
+                window.state.history.shift();
             }
-            else {
-                // Save to history
-                if(window.state.history.length > window.maxHistory) {
-                    // Clear oldest
-                    window.state.history.shift();
-                }
-                window.state.history.push(window.state.quote);
-                loadOptions(data.correct, data.wrong);
-            }
+            window.state.history.push(window.state.quote);
+            loadOptions(data.correct, data.wrong);
         }
     });
 }
