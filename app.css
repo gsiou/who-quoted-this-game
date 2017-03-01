@@ -1,7 +1,10 @@
+body {
+    font-family: 'Sansita', sans-serif;
+}
+
 #app{
     text-align: center;
     font-size: xx-large;
-    font-family: 'Sansita', sans-serif;
 }
 
 #quote-area {
@@ -32,9 +35,45 @@
     border-color: lightcoral;
 }
 
-#top-panel {
+.top-panel {
     font-size: x-large;
     top: 0;
-    left: 1%;
     position: absolute;
+}
+
+.top-panel-left {
+    left: 1%;
+}
+
+.top-panel-right {
+    right: 1%;
+}
+
+a {
+    color: black;
+    text-decoration: underline;
+}
+
+.modal {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left:15%;
+    width: 70%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.98);
+    color: white;
+    text-align: center;
+    overflow: auto;
+}
+
+.modal-close {
+    color: white;
+    position: absolute;
+    right: 1%;
+    font-size: large;
+}
+
+.history-item {
+    font-size: x-large;
 }

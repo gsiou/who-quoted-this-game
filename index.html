@@ -11,8 +11,9 @@
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     </head>
     <body>
-        <p id="top-panel">Highscore: <span id="highscore"></span></p>
-        <div id="app">
+        <span class="top-panel top-panel-left">Highscore: <span id="highscore"></span></span>
+        <span class="top-panel top-panel-right"><a href="#" id="show-history" onClick="showHistory()">Previous Quotes</a></span>
+        <div id="app" onClick="hideHistory()">
             <h1>Who quoted this?</h1>
             <div id="quote-area">
                 <p>
@@ -27,6 +28,11 @@
                 <button class="option" id="option2">Option 2</button>
             </div>
             <p>Score: <span id="score">0</span></p>
+        </div>
+        <div class="modal" style="display: none" id="history-modal">
+            <a class="modal-close" href="#" id='hide-history' onClick='hideHistory()'>Close</a>
+            <h1>History</h1>
+            <div id="history-list"></div>
         </div>
     </body>
 </html>
