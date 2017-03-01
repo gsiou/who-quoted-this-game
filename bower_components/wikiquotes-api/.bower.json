@@ -1,0 +1,14 @@
+{
+  "name": "wikiquotes-api",
+  "homepage": "https://github.com/natetyler/wikiquotes-api",
+  "_release": "e74351888e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e74351888e22fb1f9ddeb2cae12101f5ea781674"
+  },
+  "_source": "https://github.com/natetyler/wikiquotes-api.git",
+  "_target": "*",
+  "_originalSource": "natetyler/wikiquotes-api",
+  "_direct": true
+}
