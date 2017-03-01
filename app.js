@@ -152,7 +152,7 @@ function updateHistoryUI() {
     // Render all history items except the last one.
     // The last is the current quote.
     $("#history-list").html(""); // Clear previous
-    for(var i = 0; i < window.state.history.length - 1; i++) {
+    for(var i = window.state.history.length - 2; i >= 0; i--) {
         $("#history-list").append(renderHistoryItem(window.state.history[i]));
     }
     $("#history-list").find("a").contents().unwrap(); // Remove links 
@@ -160,6 +160,8 @@ function updateHistoryUI() {
 
 function hideOptions() {
     $("#quote").text("Loading...");
+    $("#option1").unbind("click");
+    $("#option2").unbind("click");
     $("#options").hide();
 }
 
