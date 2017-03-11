@@ -77,3 +77,20 @@ a {
 .history-item {
     font-size: x-large;
 }
+
+@media all and (orientation: portrait) {
+    #quote-area {
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 50px;
+    }
+
+    .top-panel {
+        font-size: 40px;
+    }
+
+    .option {
+        font-size: 50px;
+        min-width: 40%;
+    }
+}
