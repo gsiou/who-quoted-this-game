@@ -79,6 +79,10 @@ a {
 }
 
 @media all and (orientation: portrait) {
+    #app {
+        margin-top: 30%;
+    }
+    
     #quote-area {
         margin-left: 0;
         margin-right: 0;
@@ -86,11 +90,24 @@ a {
     }
 
     .top-panel {
-        font-size: 40px;
+        font-size: 50px;
+    }
+
+    .top-panel a {
+        padding-top: 2%;
+        padding-bottom: 2%;
     }
 
     .option {
         font-size: 50px;
         min-width: 40%;
+    }
+
+    .option:hover {
+        border: solid 2px lightgray; !important
+    }
+
+    #score {
+        font-size: 50px;
     }
 }
